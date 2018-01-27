@@ -12,8 +12,8 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
-
-  return (
+  console.log(children)
+  return (    
     <div>
       <h1><a href='/'>Rattus Rattus</a></h1>
       <nav>
