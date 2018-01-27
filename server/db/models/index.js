@@ -6,6 +6,8 @@ const User = require('./user')
  *
  *    BlogPost.belongsTo(User)
  */
+User.belongsTo(User, {as: 'sire'})
+User.hasMany(User, {as: 'offspring'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

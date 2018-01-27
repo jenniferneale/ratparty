@@ -16,7 +16,24 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
-  }
+  },
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+  },
+  isRat: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
+  points: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  inventory: {
+    type: Sequelize.ARRAY(Sequelize.BLOB),
+    defaultValue: [],
+  },
 })
 
 module.exports = User
@@ -41,6 +58,14 @@ User.encryptPassword = function (plainText, salt) {
     .update(plainText)
     .update(salt)
     .digest('hex')
+}
+
+User.getTotalRatPoints = () => {
+  return User.sum('points', { where: { isRat: true }})
+}
+
+User.getTotalHumanPoints = () => {
+  return User.sum('points', { where: { isRat: false }})
 }
 
 /**

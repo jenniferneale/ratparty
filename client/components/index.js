@@ -6,3 +6,8 @@
 export {default as Main} from './main'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+export {default as HumanTotal} from './human-total'
+export {default as RatTotal} from './rat-total'
+export {default as Rats} from './rats'
+export {default as Humans} from './humans'
+export {default as SingleUser} from './single-user'
