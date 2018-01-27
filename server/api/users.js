@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'username']
+    attributes: ['id', 'username','isRat']
   })
     .then(users => res.json(users))
     .catch(next)
@@ -20,7 +20,7 @@ router.get('/rats', (req, res, next) => {
     where: {
       isRat: true
     },
-    attributes: ['id', 'username', 'points']
+    attributes: ['id', 'username', 'points', 'isRat']
   })
   .then(users => res.json(users))
     .catch(next)
@@ -31,7 +31,7 @@ router.get('/humans', (req, res, next) => {
     where: {
       isRat: false
     },
-    attributes: ['id', 'username', 'points']
+    attributes: ['id', 'username', 'points', 'isRat']
   })
   .then(users => res.json(users))
     .catch(next)
@@ -56,13 +56,13 @@ router.post('/:id/add', (req, res, next) => {
   ).then(user => user.update(
     { points: user.points + 1 },
   ))
-  /*.then(user => res.json(user))*/
-  .then(user => {
+   .then(user => res.json(user))
+  /*.then(user => {
     //if logged in, send status(200) (use sockets to show clicker updates later?)
-    //if not logged in, redirect to signup
+    //if not logged in, redirect to signup with referral
     if(req.user) res.redirect('/users/'+req.params.id);
-    else res.redirect('/landing?'+req.params.id);
-  })
+    else res.redirect('/landing?'+req.params.id);  
+  })*/
   .catch(next)
 })
 
@@ -81,7 +81,7 @@ router.post('/:id/reset', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   User.findOne({
     where: {id: req.params.id},
-    attributes: ['id', 'username', 'points']
+    attributes: ['id', 'username', 'points', 'isRat']
   })
   .then(user => res.json(user))
   .catch(next)
