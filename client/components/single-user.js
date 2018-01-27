@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProfile, addPoint } from '../store'
 
-class singleTutor extends Component {
-    state = {
-        loading: true
-      }
+class singleTutor extends Component {    
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
@@ -22,7 +19,7 @@ class singleTutor extends Component {
                         <h1>{user.username}</h1>
                         <h5>{ user.isRat ? 'Rat' : 'Human' }</h5>
                         {/*<img src={tutor.img} className="profileImg" />*/}
-                        <p>{ user.isRat ? 'Bites' : 'Antibodies' } {user.points}</p>
+                        <p>{ user.isRat ? 'Bites' : 'Vaccinations' } {user.points}</p>
                         <button onClick={this.props.clickPoint}>{user.isRat ? 'Bite!' : 'Vaccinate!'}</button>                      
                     </div>                    
                 }

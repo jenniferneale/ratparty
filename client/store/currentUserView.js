@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-
+import store from './index'
 
 /**
  * ACTION TYPES
@@ -33,7 +33,9 @@ export const addPoint = (userId) =>
         axios.post(`/api/users/${userId}/add`)
         .then(res =>
             dispatch(getProfile(res.data || defaultUser)))
-        .catch(err => console.log(err))
+            if (!store.user) //if not logged in, redirect to landing page
+                {history.push('/firstbite')
+        .catch(err => console.log(err))}
     }
 
 /**

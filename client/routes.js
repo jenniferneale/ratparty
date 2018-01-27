@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, SingleUser} from './components'
+import {Main, Login, Signup, UserHome, SingleUser, NotFound, FirstBite, Leaderboard} from './components'
 import {me} from './store'
 
 /**
@@ -19,9 +19,11 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
+        
         <Main>
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route exact path='/' component={Leaderboard} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
@@ -32,9 +34,10 @@ class Routes extends Component {
                 </Switch>
             }
             <Route path="/users/:userId" component={SingleUser} />
-            <Route path="/home" component={UserHome} />
+            <Route path="/firstbite" component={FirstBite} />
+            
             {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            <Route path='*' component={NotFound} />
           </Switch>
         </Main>
       </Router>
