@@ -19,7 +19,10 @@ class SingleUser extends Component {
                         <h5>{ user.isRat ? 'Rat' : 'Human' }</h5>
                         {/*<img src={tutor.img} className="profileImg" />*/}
                         <p>{ user.isRat ? 'Bites' : 'Vaccinations' } {user.points}</p>
-                        <button className="btn btn-primary" onClick={this.props.clickPoint}>{user.isRat ? 'Bite!' : 'Vaccinate!'}</button>                      
+                        <div className="col-10 offset-1">
+                            <img onClick={this.props.clickPoint} className={`img-fluid ${user.isRat? 'ratClick' : 'humanClick'}`} />
+                            <h2 className="text-centered-img">{user.isRat ? 'Bite!' : 'Vaccinate!'}</h2>
+                        </div>
                     </div>   
                     :
                     <div>User not yet loaded</div>                 

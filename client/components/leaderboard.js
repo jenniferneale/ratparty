@@ -12,7 +12,6 @@ class Leaderboard extends Component {
     render() {
         return (
             <div>
-                <p>Leaderboard goes here</p>
                 <RatTotal total={this.props.users.ratPoints} />
                 <HumanTotal total={this.props.users.humanPoints} />
                 <Rats rats={this.props.users.rats} />
@@ -32,6 +31,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     return {
         dispRats: () => {
             dispatch(fetchRats())
+            dispatch(fetchHumans())
         }
     }
 }
