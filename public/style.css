@@ -32,3 +32,26 @@ form div {
 .rightPageImage {
   padding-left: 0px;
 }
+
+.ratClick {
+  content: url('/images/button_rat_off.png')
+}
+
+.humanClick {
+  content: url('/images/button_human_off.png')
+}
+
+.ratClick:hover {
+  content: url('/images/button_rat_on.png')
+}
+
+.humanClick:hover {
+  content: url('/images/button_human_on.png')
+}
+
+.text-centered-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

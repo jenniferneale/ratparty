@@ -23,10 +23,10 @@ const defaultState = {
 /**
  * ACTION CREATORS
  */
-const getRats = () => ({type: GET_RATS })
-const getHumans = () => ({type: GET_HUMANS })
-const getRatPoints = () => ({type: GET_RATPOINTS })
-const getHumanPoints = () => ({type: GET_HUMANPOINTS })
+const getRats = (rats) => ({type: GET_RATS, rats })
+const getHumans = (humans) => ({type: GET_HUMANS, humans })
+const getRatPoints = (ratPoints) => ({type: GET_RATPOINTS, ratPoints })
+const getHumanPoints = (humanPoints) => ({type: GET_HUMANPOINTS, humanPoints })
 
 /**
  * THUNK CREATORS
@@ -38,8 +38,8 @@ export const fetchRats = () =>
                 dispatch(getRats(res.data || defaultState.rats)))
             .then(() => {
                 return axios.get(`/api/users/rats/points`)})
-            .then(rps => 
-                dispatch(getRatPoints(rps || defaultState.ratPoints)))
+            .then(rps => {
+                dispatch(getRatPoints(rps.data || defaultState.ratPoints))})
             .catch(err => console.log(err))
     }
 
@@ -51,7 +51,7 @@ export const fetchRats = () =>
             .then(() => {
                 return axios.get(`/api/users/humans/points`)})
             .then(rps => 
-                dispatch(getHumanPoints(rps || defaultState.humanPoints)))
+                dispatch(getHumanPoints(rps.data || defaultState.humanPoints)))
             .catch(err => console.log(err))
     }
 

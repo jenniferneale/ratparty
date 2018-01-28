@@ -93,7 +93,7 @@ router.get('/:id', (req, res, next) => {
   User.findOne({
     where: {id: req.params.id},
     attributes: ['id', 'username', 'points', 'isRat'],
-    include: [ 'offspring']
+    include: [ {association:'offspring', attributes: ['id', 'username', 'points', 'isRat']}]
   })
   .then(user => res.json(user))
   .catch(next)
