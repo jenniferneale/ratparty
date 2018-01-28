@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter, Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
 /**
@@ -11,14 +11,13 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
-  console.log(children)
+  const {children, handleClick, isLoggedIn, user} = props
   return (
     <div className="main row">
-      <div className="leftPageImage col-md-2">
+      <div className="leftPageImage col">
         <img className="img-fluid" src="/images/left_float_v01.png" />
       </div>
-      <div className="centerPage col-md-8">
+      <div className="centerPage col-8 col-lg-5">
         <div className=""><a href="/"><img className="img-fluid" src="/images/signin_middle_v01.png" /></a></div>
         <nav>
           {
@@ -26,19 +25,21 @@ const Main = (props) => {
               ? <div>
                 {/* The navbar will show these links after you log in */}
                 <Link to="/home">Home</Link>
-                <a href="#" onClick={handleClick}>Logout</a>
+                <NavLink to={`/users/${user.id}`} >Profile</NavLink>
+                <a className="float-right" href="#" onClick={handleClick}>Logout</a>
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/">Home</Link>
+                <Link to="/login" className="float-right">Login</Link>
+                <Link to="/signup" className="float-right">Sign Up</Link>
               </div>
           }
         </nav>
         <hr />
         {children}
       </div>
-      <div className="rightPageImage col-md-2">
+      <div className="rightPageImage col">
         <img className="img-fluid" src="/images/right_float_v01.png" />
       </div>
     </div>
@@ -50,7 +51,8 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user,
   }
 }
 

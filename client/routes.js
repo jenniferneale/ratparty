@@ -24,6 +24,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route exact path='/' component={Leaderboard} />
+            <Route exact path="/users/:userId" component={SingleUser} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
@@ -33,10 +34,10 @@ class Routes extends Component {
                   <Route path="/home" component={UserHome} />
                 </Switch>
             }
-            <Route path="/users/:userId" component={SingleUser} />
+            
             <Route path="/firstbite" component={FirstBite} />
             
-            {/* Displays our Login component as a fallback */}
+            {/* Displays our NotFound component as a fallback */}
             <Route path='*' component={NotFound} />
           </Switch>
         </Main>

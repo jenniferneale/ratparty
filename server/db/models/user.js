@@ -24,7 +24,7 @@ const User = db.define('user', {
   },
   isRat: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   },
   points: {
     type: Sequelize.INTEGER,

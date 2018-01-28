@@ -19,3 +19,16 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.centerPage {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.leftPageImage {
+  padding-right: 0px;
+}
+
+.rightPageImage {
+  padding-left: 0px;
+}

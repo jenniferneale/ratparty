@@ -32,10 +32,13 @@ export const addPoint = (userId) =>
     dispatch => {
         axios.post(`/api/users/${userId}/add`)
         .then(res => {
-            dispatch(getProfile(res.data || defaultUser))
-            if (!store.user) //if not logged in, redirect to landing page
-                history.push('/firstbite')
-        })
+            dispatch(getProfile(res.data || defaultUser))            
+            //if not logged in, redirect to landing page
+            return axios.get('/auth/me')
+        })       
+        .then(user => {
+            if (!user.data.id) history.push(`/firstbite/${userId}`)
+        }) 
         .catch(err => console.log(err))
     }
 

@@ -64,21 +64,26 @@ router.post('/:id/add', (req, res, next) => {
 })
 
 router.post('/:id/reset', (req, res, next) => {
-  console.log('req.body', req.body)
   if (req.body.code !== resetCode) res.status(200).send('Could not reset points.');
-  User.findOne(
-    { where: { id: req.params.id }},
-  ).then(user => user.update(
+  User.findById(req.params.id )
+  .then(user => user.update(
     { points: 0 },
   ))
   .then(user => res.json(user))
   .catch(next)
 })
 
-router.get('/:id/offspring', (req, res, next) => {
-  User.findOne({
+/*router.post('/:id', (req, res, next) => {
+  if (req.body.code !== resetCode) res.status(200).send('Could not create or update user.');
+  User.findOrCreate({
     where: {id: req.params.id},
   })
+  .then(user => res.json(user))
+  .catch(next)
+})*/
+
+router.get('/:id/offspring', (req, res, next) => {
+  User.findById(req.params.id)
     .then(user => user.getOffspring())
     .then(offspring => res.json(offspring))
     .catch(next)

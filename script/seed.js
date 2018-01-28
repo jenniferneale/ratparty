@@ -19,7 +19,7 @@ async function seed () {
   // executed until that promise resolves!
 
   const users = await Promise.all([
-    User.create({email: 'aqsherman@outlook.com', password: 'test', username: 'Rattus Alpha'}),
+    User.create({email: 'aqsherman@outlook.com', password: 'test', username: 'Rattus Alpha', isRat: true }),
     User.create({email: 'jeneale6@gmail.com', password: 'test', username: 'Dr. Floofy', isRat: false}),
   ])
   

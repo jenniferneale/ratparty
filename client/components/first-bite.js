@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProfile, addPoint } from '../store'
+import { Signup } from './auth-form';
 
 class FirstBite extends Component {
     
@@ -11,7 +12,8 @@ class FirstBite extends Component {
     render() {
         return (
             <div>
-                Some text here
+                <p>Oh god! You've been bitten by a rat! Quick, do something!</p>
+                <Signup />
             </div>
         )
     }

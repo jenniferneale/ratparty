@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProfile, addPoint } from '../store'
 
-class singleTutor extends Component {    
+class SingleUser extends Component {    
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
@@ -14,14 +14,16 @@ class singleTutor extends Component {
         const user = this.props.currentUserView;
         return (
             <div>
-                {user && user.id && 
+                {(user && user.id) ?
                     <div>
                         <h1>{user.username}</h1>
                         <h5>{ user.isRat ? 'Rat' : 'Human' }</h5>
                         {/*<img src={tutor.img} className="profileImg" />*/}
                         <p>{ user.isRat ? 'Bites' : 'Vaccinations' } {user.points}</p>
                         <button onClick={this.props.clickPoint}>{user.isRat ? 'Bite!' : 'Vaccinate!'}</button>                      
-                    </div>                    
+                    </div>   
+                    :
+                    <div>User not yet loaded</div>                 
                 }
             </div>
         )
@@ -47,4 +49,4 @@ function mapDispatchToProps(dispatch, ownProps) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(singleTutor)
+export default connect(mapStateToProps, mapDispatchToProps)(SingleUser)
