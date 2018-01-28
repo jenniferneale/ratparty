@@ -14,8 +14,8 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
   console.log(children)
   return (    
-    <div>
-      <h1><a href='/'>Rat Party</a></h1>
+    <div className="container">
+      <div className='row'><a href='/'><img className='img-responsive col-md-4 offset-md-4 col-xs-12' src='/images/signin_middle_v01.png' /></a></div>
       <nav>
         {
           isLoggedIn
