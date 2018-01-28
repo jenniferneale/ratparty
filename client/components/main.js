@@ -13,26 +13,34 @@ import {logout} from '../store'
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
   console.log(children)
-  return (    
-    <div className="container">
-      <div className='row'><a href='/'><img className='img-responsive col-md-4 offset-md-4 col-xs-12' src='/images/signin_middle_v01.png' /></a></div>
-      <nav>
-        {
-          isLoggedIn
-            ? <div>
-              {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
-              <a href="#" onClick={handleClick}>Logout</a>
-            </div>
-            : <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-        }
-      </nav>
-      <hr />
-      {children}
+  return (
+    <div className="main row">
+      <div className="leftPageImage col-md-2">
+        <img className="img-fluid" src="/images/left_float_v01.png" />
+      </div>
+      <div className="centerPage col-md-8">
+        <div className=""><a href="/"><img className="img-fluid" src="/images/signin_middle_v01.png" /></a></div>
+        <nav>
+          {
+            isLoggedIn
+              ? <div>
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home">Home</Link>
+                <a href="#" onClick={handleClick}>Logout</a>
+              </div>
+              : <div>
+                {/* The navbar will show these links before you log in */}
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+          }
+        </nav>
+        <hr />
+        {children}
+      </div>
+      <div className="rightPageImage col-md-2">
+        <img className="img-fluid" src="/images/right_float_v01.png" />
+      </div>
     </div>
   )
 }
