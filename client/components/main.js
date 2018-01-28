@@ -15,7 +15,7 @@ const Main = (props) => {
   console.log(children)
   return (    
     <div>
-      <h1><a href='/'>Rattus Rattus</a></h1>
+      <h1><a href='/'>Rat Party</a></h1>
       <nav>
         {
           isLoggedIn
