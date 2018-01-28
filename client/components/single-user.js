@@ -20,7 +20,7 @@ class SingleUser extends Component {
                         <h5>{ user.isRat ? 'Rat' : 'Human' }</h5>
                         {/*<img src={tutor.img} className="profileImg" />*/}
                         <p>{ user.isRat ? 'Bites' : 'Vaccinations' } {user.points}</p>
-                        <button onClick={this.props.clickPoint}>{user.isRat ? 'Bite!' : 'Vaccinate!'}</button>                      
+                        <button className="btn btn-primary" onClick={this.props.clickPoint}>{user.isRat ? 'Bite!' : 'Vaccinate!'}</button>                      
                     </div>   
                     :
                     <div>User not yet loaded</div>                 
