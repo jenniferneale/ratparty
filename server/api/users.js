@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'username','isRat']
+    attributes: ['id', 'username', 'isRat']
   })
     .then(users => res.json(users))
     .catch(next)
@@ -52,22 +52,19 @@ router.get('/humans/points', (req, res, next) => {
 //TEST THIS ONE MORE
 router.post('/:id/add', (req, res, next) => {
   User.findOne(
-    { where: { id: req.params.id }},
-  ).then(user => user.update(
-    { points: user.points + 1 },
-  ))
+    { where: { id: req.params.id },
+       include: [{all: true } ],
+    })
+   .then(user => {
+    let recruits = user.offspring.length;
+    return user.update({ points: user.points + 1 + (1 * recruits) })
+    })
    .then(user => res.json(user))
-  /*.then(user => {
-    //if logged in, send status(200) (use sockets to show clicker updates later?)
-    //if not logged in, redirect to signup with referral
-    if(req.user) res.redirect('/users/'+req.params.id);
-    else res.redirect('/landing?'+req.params.id);  
-  })*/
-  .catch(next)
+   .catch(next)
 })
 
 router.post('/:id/reset', (req, res, next) => {
-  console.log("req.body",req.body)
+  console.log('req.body', req.body)
   if (req.body.code !== resetCode) res.status(200).send('Could not reset points.');
   User.findOne(
     { where: { id: req.params.id }},
@@ -80,7 +77,7 @@ router.post('/:id/reset', (req, res, next) => {
 
 router.get('/:id/offspring', (req, res, next) => {
   User.findOne({
-    where: {id: req.params.id},    
+    where: {id: req.params.id},
   })
     .then(user => user.getOffspring())
     .then(offspring => res.json(offspring))
