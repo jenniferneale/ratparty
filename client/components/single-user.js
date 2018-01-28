@@ -6,8 +6,7 @@ class SingleUser extends Component {
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
-        this.props.loadUser(userId)
-        console.log('UserId: ', userId)
+        this.props.loadUser(userId)        
     }
 
     render() {
@@ -43,7 +42,6 @@ function mapDispatchToProps(dispatch, ownProps) {
         },
         clickPoint: e => {
             e.preventDefault();
-            console.log(ownProps.match.params.userId)
             dispatch(addPoint(ownProps.match.params.userId))
         }
     }

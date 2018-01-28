@@ -10,10 +10,11 @@ class FirstBite extends Component {
     }
 
     render() {
+        const sireId = this.props.match.params.sireId;
         return (
             <div>
                 <p>Oh god! You've been bitten by a rat! Quick, do something!</p>
-                <Signup />
+                <Signup sireId={sireId} />
             </div>
         )
     }

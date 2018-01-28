@@ -34,7 +34,7 @@ class Routes extends Component {
                   <Route path="/home" component={UserHome} />
                 </Switch>
             }
-            
+            <Route path="/firstbite/:sireId" component={FirstBite} />
             <Route path="/firstbite" component={FirstBite} />
             
             {/* Displays our NotFound component as a fallback */}

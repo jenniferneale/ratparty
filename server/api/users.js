@@ -84,7 +84,7 @@ router.post('/:id/reset', (req, res, next) => {
 
 router.get('/:id/offspring', (req, res, next) => {
   User.findById(req.params.id)
-    .then(user => user.getOffspring())
+    .then(user => user.getOffspring({ attributes: ['id', 'username', 'points', 'isRat']}))
     .then(offspring => res.json(offspring))
     .catch(next)
 })
@@ -92,7 +92,8 @@ router.get('/:id/offspring', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   User.findOne({
     where: {id: req.params.id},
-    attributes: ['id', 'username', 'points', 'isRat']
+    attributes: ['id', 'username', 'points', 'isRat'],
+    include: [ 'offspring']
   })
   .then(user => res.json(user))
   .catch(next)
