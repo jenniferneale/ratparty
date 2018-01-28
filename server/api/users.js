@@ -78,6 +78,15 @@ router.post('/:id/reset', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/:id/offspring', (req, res, next) => {
+  User.findOne({
+    where: {id: req.params.id},    
+  })
+    .then(user => user.getOffspring())
+    .then(offspring => res.json(offspring))
+    .catch(next)
+})
+
 router.get('/:id', (req, res, next) => {
   User.findOne({
     where: {id: req.params.id},
