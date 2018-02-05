@@ -44,9 +44,9 @@ const Main = (props) => {
         <img className="img-fluid" src="/images/right_float_v01.png" />
       </div>
     </div>
-    <div class="footer-copyright">
-        <div class="container-fluid">
-            © 2018 Copyright: <Link to="/about"> Alex Sherman and Jennifer Neale </Link>
+    <div className="footer-copyright">
+        <div className="container-fluid">
+            <p className="float-right">© 2018 Copyright: <Link to="/about"> Alex Sherman and Jennifer Neale </Link></p>
         </div>
     </div>
     </div>
