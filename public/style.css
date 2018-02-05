@@ -55,3 +55,18 @@ form div {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.bubble-div {
+  margin: 1em 0em 5em 0em;    
+}
+
+.bubble {
+  text-align: center;
+  background-color: #008cba;    
+  padding: 15px;
+  color: white;
+}
+
+.profile-pic {
+  border-radius: 50%;
+}
